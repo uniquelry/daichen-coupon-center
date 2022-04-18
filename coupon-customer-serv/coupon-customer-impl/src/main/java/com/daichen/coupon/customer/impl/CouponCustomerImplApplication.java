@@ -1,10 +1,13 @@
-package com.daichen.couponcustomerimpl;
+package com.daichen.coupon.customer.impl;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author liuruiyu
+ * @author daichen
+ * @version v1.0
+ * @create 2022/4/18 18:54
+ * @description
  */
 @SpringBootApplication
 public class CouponCustomerImplApplication {

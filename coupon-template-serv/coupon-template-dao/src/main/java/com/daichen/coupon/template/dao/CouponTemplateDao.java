@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author daichen
  * @version v1.0
- * @create 2022/4/18 18:54
+ * @create 2022/4/18 20:54
  * @description
  */
 public interface CouponTemplateDao extends JpaRepository<CouponTemplate, Long> {

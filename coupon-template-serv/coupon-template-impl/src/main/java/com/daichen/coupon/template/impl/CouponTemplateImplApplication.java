@@ -3,9 +3,13 @@ package com.daichen.coupon.template.impl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
- * @author liuruiyu
+ * @author daichen
+ * @version v1.0
+ * @create 2022/4/18 18:54
+ * @description
  */
 @SpringBootApplication
 @EnableJpaAuditing
