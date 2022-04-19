@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
  * @description
  */
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.daichen.coupon"})
 public class CouponCalculationImplApplication {
 
     public static void main(String[] args) {

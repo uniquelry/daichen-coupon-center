@@ -10,12 +10,6 @@
 
     <artifactId>coupon-customer-dao</artifactId>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
-
     <dependencies>
         <!-- DAO 层理论上不应该依赖 API 层，这里懒省事儿用了一套 POJO 从前到后传递 -->
         <!-- 正确的做法是 DAO 层定义自己的 DTO，然后上层用一个 converter 再转化成 API 里的类 -->
@@ -31,13 +25,13 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
         </dependency>
     </dependencies>
 

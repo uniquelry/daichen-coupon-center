@@ -1,10 +1,10 @@
 package com.daichen.coupon.calculation.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.daichen.coupon.calculation.api.beans.ShoppingCart;
 import com.daichen.coupon.calculation.api.beans.SimulationOrder;
 import com.daichen.coupon.calculation.api.beans.SimulationResponse;
 import com.daichen.coupon.calculation.controller.service.intf.CouponCalculationService;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +36,7 @@ public class CouponCalculationController {
     @PostMapping("/calculateOrderPrice")
     @ResponseBody
     public ShoppingCart calculateOrderPrice(@RequestBody ShoppingCart cart) {
-        log.info("do calculateOrderPrice cart: {}", JSON.toJSONString(cart));
+        log.info("do calculateOrderPrice cart: {}", new Gson().toJson(cart));
         return calculationService.calculateOrderPrice(cart);
     }
 
@@ -49,7 +49,7 @@ public class CouponCalculationController {
     @PostMapping("/simulateOrder")
     @ResponseBody
     public SimulationResponse simulateOrder(@RequestBody SimulationOrder order) {
-        log.info("do simulateOrder order: {}", JSON.toJSONString(order));
+        log.info("do simulateOrder order: {}", new Gson().toJson(order));
         return calculationService.simulateOrder(order);
     }
 }

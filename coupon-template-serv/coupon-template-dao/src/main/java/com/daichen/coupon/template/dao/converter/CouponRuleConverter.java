@@ -1,7 +1,7 @@
 package com.daichen.coupon.template.dao.converter;
 
-import com.alibaba.fastjson.JSON;
 import com.daichen.coupon.template.api.beans.rules.TemplateRule;
+import com.google.gson.Gson;
 
 import javax.persistence.AttributeConverter;
 
@@ -15,11 +15,11 @@ public class CouponRuleConverter implements AttributeConverter<TemplateRule, Str
 
     @Override
     public String convertToDatabaseColumn(TemplateRule rule) {
-        return JSON.toJSONString(rule);
+        return new Gson().toJson(rule);
     }
 
     @Override
     public TemplateRule convertToEntityAttribute(String rule) {
-        return JSON.parseObject(rule, TemplateRule.class);
+        return new Gson().fromJson(rule, TemplateRule.class);
     }
 }

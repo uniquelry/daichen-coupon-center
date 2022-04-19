@@ -1,6 +1,5 @@
 package com.daichen.coupon.calculation.controller.service;
 
-import com.alibaba.fastjson.JSON;
 import com.daichen.coupon.calculation.api.beans.ShoppingCart;
 import com.daichen.coupon.calculation.api.beans.SimulationOrder;
 import com.daichen.coupon.calculation.api.beans.SimulationResponse;
@@ -9,6 +8,7 @@ import com.daichen.coupon.calculation.template.CouponTemplateFactory;
 import com.daichen.coupon.calculation.template.RuleTemplate;
 import com.daichen.coupon.template.api.beans.CouponInfo;
 import com.google.common.collect.Lists;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ public class CouponCalculationServiceImpl implements CouponCalculationService {
 
     @Override
     public ShoppingCart calculateOrderPrice(ShoppingCart cart) {
-        log.info("calculate order price: {}", JSON.toJSONString(cart));
+        log.info("calculate order price: {}", new Gson().toJson(cart));
         RuleTemplate ruleTemplate = couponProcessorFactory.getTemplate(cart);
         return ruleTemplate.calculate(cart);
     }
