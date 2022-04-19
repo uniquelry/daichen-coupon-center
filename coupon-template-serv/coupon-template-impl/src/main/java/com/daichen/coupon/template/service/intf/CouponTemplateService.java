@@ -47,7 +47,9 @@ public interface CouponTemplateService {
     CouponTemplateInfo getTemplateInfo(Long id);
 
     /**
-     * 批量查询优惠券模板。key 是模板 Id，value 是模板详情
+     * 批量查询优惠券模板。
+     * key = 模板 Id
+     * value = 模板详情
      *
      * @param ids
      * @return

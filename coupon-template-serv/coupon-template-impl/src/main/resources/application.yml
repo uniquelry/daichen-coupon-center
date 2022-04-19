@@ -1,6 +1,7 @@
 # 项目的启动端口
 server:
   port: 20000
+  # 在返回给页面的结果里，把错误信息添加到 message 里
   error:
     include-message: always
 

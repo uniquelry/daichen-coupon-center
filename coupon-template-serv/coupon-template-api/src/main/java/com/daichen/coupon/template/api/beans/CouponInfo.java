@@ -18,7 +18,6 @@ import lombok.NoArgsConstructor;
 public class CouponInfo {
 
     private Long id;
-
     /**
      * 优惠券模板 Id
      */

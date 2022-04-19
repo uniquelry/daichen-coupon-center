@@ -1,10 +1,20 @@
 package com.daichen.coupon.calculation.template;
 
+import com.daichen.coupon.calculation.api.beans.ShoppingCart;
+
 /**
  * @author daichen
  * @version v1.0
  * @create 2022/4/18 18:22
  * @description
  */
-public class RuleTemplate {
+public interface RuleTemplate {
+
+    /**
+     * 计算优惠券
+     *
+     * @param cart
+     * @return
+     */
+    ShoppingCart calculate(ShoppingCart cart);
 }

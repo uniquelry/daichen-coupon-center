@@ -2,6 +2,7 @@ package com.daichen.coupon.calculation;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author daichen
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @description
  */
 @SpringBootApplication
+@ComponentScan(basePackages = {"com.daichen.coupon"})
 public class CouponCalculationImplApplication {
 
     public static void main(String[] args) {
