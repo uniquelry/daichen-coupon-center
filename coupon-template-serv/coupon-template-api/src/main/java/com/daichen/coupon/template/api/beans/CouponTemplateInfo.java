@@ -1,11 +1,12 @@
 package com.daichen.coupon.template.api.beans;
 
 import com.daichen.coupon.template.api.beans.rules.TemplateRule;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * @author daichen
@@ -26,26 +27,26 @@ public class CouponTemplateInfo {
     @NotNull
     private String name;
     /**
-     * 优惠券描述
+     * 优惠券详细信息
      */
     @NotNull
-    private String desc;
+    private String description;
     /**
      * 优惠券类型
      */
     @NotNull
     private String type;
     /**
-     * 适用门店 - 若无则为全店通用券
+     * 优惠券适用的门店，如果是空则代表所有门店适用
      */
     private Long shopId;
     /**
-     * 优惠券规则
+     * 详细的使用规则
      */
     @NotNull
     private TemplateRule rule;
     /**
-     * 当前模板是否为可用状态
+     * 优惠券可用状态
      */
     private Boolean available;
 }

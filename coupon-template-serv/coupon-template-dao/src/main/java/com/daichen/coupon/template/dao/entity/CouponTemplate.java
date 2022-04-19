@@ -2,8 +2,8 @@ package com.daichen.coupon.template.dao.entity;
 
 import com.daichen.coupon.template.api.beans.rules.TemplateRule;
 import com.daichen.coupon.template.api.enums.CouponType;
-import com.daichen.coupon.template.dao.converter.CouponTypeConverter;
 import com.daichen.coupon.template.dao.converter.CouponRuleConverter;
+import com.daichen.coupon.template.dao.converter.CouponTypeConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,22 +41,18 @@ public class CouponTemplate {
     @Column(name = "id", nullable = false)
     private Long id;
     /**
-     * 状态是否可用
+     * 创建时间，通过 @CreateDate 注解自动填值（需要配合 @JpaAuditing 注解在启动类上生效）
      */
-    @Column(name = "available", nullable = false)
-    private Boolean available;
+    @CreatedDate
+    @Column(name = "created_time", nullable = false)
+    private Date createdTime;
     /**
-     * 名称
+     * 优惠券名称
      */
     @Column(name = "name", nullable = false)
     private String name;
     /**
-     * 适用门店-如果为空，则为全店满减券
-     */
-    @Column(name = "shop_id")
-    private Long shopId;
-    /**
-     * 描述
+     * 优惠券详细信息
      */
     @Column(name = "description", nullable = false)
     private String description;
@@ -65,17 +61,21 @@ public class CouponTemplate {
      */
     @Column(name = "type", nullable = false)
     @Convert(converter = CouponTypeConverter.class)
-    private CouponType category;
+    private CouponType type;
     /**
-     * 创建时间，通过 @CreateDate 注解自动填值（需要配合 @JpaAuditing 注解在启动类上生效）
+     * 优惠券适用的门店，如果是空则代表所有门店适用
      */
-    @CreatedDate
-    @Column(name = "created_time", nullable = false)
-    private Date createdTime;
+    @Column(name = "shop_id")
+    private Long shopId;
     /**
-     * 优惠券核算规则，平铺成 JSON 字段
+     * 详细的使用规则，平铺成 JSON 字段
      */
     @Column(name = "rule", nullable = false)
     @Convert(converter = CouponRuleConverter.class)
     private TemplateRule rule;
+    /**
+     * 优惠券可用状态
+     */
+    @Column(name = "available", nullable = false)
+    private Boolean available;
 }

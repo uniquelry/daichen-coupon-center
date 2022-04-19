@@ -1,4 +1,4 @@
-package com.daichen.coupon.calculation.impl.template.impl;
+package com.daichen.coupon.calculation.template.impl;
 
 /**
  * @author daichen
@@ -6,5 +6,5 @@ package com.daichen.coupon.calculation.impl.template.impl;
  * @create 2022/4/18 18:23
  * @description
  */
-public class DummyTemplate {
+public class LonelyNightTemplate {
 }

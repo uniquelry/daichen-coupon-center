@@ -20,11 +20,11 @@ import java.util.List;
 public class PagedCouponTemplateInfo {
 
     /**
-     * 优惠券模版
+     * 优惠券模板
      */
     public List<CouponTemplateInfo> templates;
     /**
-     * 页数
+     * 页码
      */
     public int page;
     /**

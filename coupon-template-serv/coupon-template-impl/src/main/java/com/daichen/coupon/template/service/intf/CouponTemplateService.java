@@ -1,4 +1,4 @@
-package com.daichen.coupon.template.impl.service.intf;
+package com.daichen.coupon.template.service.intf;
 
 import com.daichen.coupon.template.api.beans.CouponTemplateInfo;
 import com.daichen.coupon.template.api.beans.PagedCouponTemplateInfo;
@@ -24,7 +24,7 @@ public interface CouponTemplateService {
     CouponTemplateInfo createTemplate(CouponTemplateInfo request);
 
     /**
-     * 克隆优惠券模版
+     * 克隆优惠券模板
      *
      * @param templateId
      * @return
@@ -32,12 +32,11 @@ public interface CouponTemplateService {
     CouponTemplateInfo cloneTemplate(Long templateId);
 
     /**
-     * 模板查询（分页）
+     * 将优惠券模板无效化
      *
-     * @param request
-     * @return
+     * @param id
      */
-    PagedCouponTemplateInfo search(TemplateSearchParams request);
+    void deleteTemplate(Long id);
 
     /**
      * 通过模板 Id 查询优惠券模板
@@ -45,20 +44,21 @@ public interface CouponTemplateService {
      * @param id
      * @return
      */
-    CouponTemplateInfo loadTemplateInfo(Long id);
+    CouponTemplateInfo getTemplateInfo(Long id);
 
     /**
-     * 让优惠券模板无效
-     *
-     * @param id
-     */
-    void deleteTemplate(Long id);
-
-    /**
-     * 批量查询。key 是模板 Id，value 是模板详情
+     * 批量查询优惠券模板。key 是模板 Id，value 是模板详情
      *
      * @param ids
      * @return
      */
     Map<Long, CouponTemplateInfo> getTemplateInfoMap(Collection<Long> ids);
+
+    /**
+     * 查询优惠券模板（分页）
+     *
+     * @param request
+     * @return
+     */
+    PagedCouponTemplateInfo search(TemplateSearchParams request);
 }

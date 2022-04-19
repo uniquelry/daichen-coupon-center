@@ -35,11 +35,11 @@ public class TemplateSearchParams {
      */
     private Boolean available;
     /**
-     * 页数
+     * 页码
      */
     private int page;
     /**
-     * 页码
+     * 页大小
      */
     private int pageSize;
 }

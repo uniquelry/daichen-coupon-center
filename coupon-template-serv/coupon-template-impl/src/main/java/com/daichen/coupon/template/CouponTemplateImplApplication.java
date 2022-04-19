@@ -1,8 +1,7 @@
-package com.daichen.coupon.template.impl;
+package com.daichen.coupon.template;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
@@ -13,7 +12,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  */
 @SpringBootApplication
 @EnableJpaAuditing
-@ComponentScan(basePackages = {"com.daichen"})
 public class CouponTemplateImplApplication {
 
     public static void main(String[] args) {

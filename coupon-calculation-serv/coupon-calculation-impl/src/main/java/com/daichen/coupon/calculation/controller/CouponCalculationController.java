@@ -1,4 +1,4 @@
-package com.daichen.coupon.calculation.impl.controller;
+package com.daichen.coupon.calculation.controller;
 
 /**
  * @author daichen

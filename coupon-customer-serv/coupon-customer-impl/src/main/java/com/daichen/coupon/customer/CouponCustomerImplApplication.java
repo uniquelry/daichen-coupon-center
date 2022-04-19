@@ -1,4 +1,4 @@
-package com.daichen.coupon.calculation.impl;
+package com.daichen.coupon.customer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,10 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @description
  */
 @SpringBootApplication
-public class CouponCalculationImplApplication {
+public class CouponCustomerImplApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CouponCalculationImplApplication.class, args);
+        SpringApplication.run(CouponCustomerImplApplication.class, args);
     }
 
 }

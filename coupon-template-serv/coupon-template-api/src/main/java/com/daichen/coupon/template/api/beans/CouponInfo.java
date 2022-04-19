@@ -20,7 +20,7 @@ public class CouponInfo {
     private Long id;
 
     /**
-     * 优惠券模版 Id
+     * 优惠券模板 Id
      */
     private Long templateId;
     /**

@@ -1,4 +1,4 @@
-package com.daichen.coupon.calculation.impl.template.impl;
+package com.daichen.coupon.calculation.template.impl;
 
 /**
  * @author daichen
