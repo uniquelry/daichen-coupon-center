@@ -23,6 +23,11 @@ import java.util.List;
 public class SimulationOrder {
 
     /**
+     * 用户 Id
+     */
+    @NotNull
+    private Long userId;
+    /**
      * 商品列表
      */
     @NotEmpty
@@ -36,9 +41,4 @@ public class SimulationOrder {
      * 券列表
      */
     private List<CouponInfo> couponInfos;
-    /**
-     * 用户 Id
-     */
-    @NotNull
-    private Long userId;
 }

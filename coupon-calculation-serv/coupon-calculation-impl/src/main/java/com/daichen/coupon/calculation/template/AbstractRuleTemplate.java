@@ -2,7 +2,7 @@ package com.daichen.coupon.calculation.template;
 
 import com.daichen.coupon.calculation.api.beans.Product;
 import com.daichen.coupon.calculation.api.beans.ShoppingCart;
-import com.daichen.coupon.template.api.beans.CouponTemplateInfo;
+import com.daichen.coupon.template.api.beans.CouponInfo;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
@@ -23,32 +23,32 @@ public abstract class AbstractRuleTemplate implements RuleTemplate {
 
     @Override
     public ShoppingCart calculate(ShoppingCart cart) {
+        List<Product> products = cart.getProducts();
         // 获取订单总价
-        Long orderTotalAmount = getTotalPrice(cart.getProducts());
+        Long orderTotalAmount = getTotalPrice(products);
         // 获取以 shopId 为维度的价格统计
-        Map<Long, Long> sumAmount = this.getTotalPriceGroupByShop(cart.getProducts());
+        Map<Long, Long> shopTotalAmountMap = this.getTotalPriceGroupByShop(products);
 
         // 以下规则只做单个优惠券的计算
-        CouponTemplateInfo template = cart.getCouponInfos().get(0).getTemplate();
-        // 最低消费限制
-        Long threshold = template.getRule().getDiscount().getThreshold();
-        // 优惠金额或者打折比例
-        Long quota = template.getRule().getDiscount().getQuota();
+        CouponInfo couponInfo = cart.getCouponInfos().get(0);
         // 当前优惠券适用的门店 Id，如果为空则作用于全店券
-        Long shopId = template.getShopId();
+        Long shopId = couponInfo.getShopId();
 
         // 如果优惠券未指定 shopId，shopTotalAmount=orderTotalAmount
         // 如果指定了 shopId，则 shopTotalAmount=对应门店下商品总价
-        Long shopTotalAmount = (shopId == null) ? orderTotalAmount : sumAmount.get(shopId);
+        Long shopTotalAmount = (shopId == null) ? orderTotalAmount : shopTotalAmountMap.get(shopId);
 
-        // 如果不符合优惠券使用标准, 则直接按原价走，不使用优惠券
-        if (shopTotalAmount == null || shopTotalAmount < threshold) {
+        // 如果不符合符合优惠券使用标准, 则直接按原价走，不使用优惠券
+        if (isAvailable(shopTotalAmount, couponInfo)) {
             log.warn("Totals of amount not meet, ur coupons are not applicable to this cart");
             cart.setCost(orderTotalAmount);
+            cart.setCouponIds(Collections.emptyList());
             cart.setCouponInfos(Collections.emptyList());
             return cart;
         }
 
+        // 优惠金额或者打折比例
+        Long quota = couponInfo.getTemplate().getRule().getDiscount().getQuota();
         // 子类中计算新的价格
         Long newCost = calculateNewPrice(orderTotalAmount, shopTotalAmount, quota);
         // 订单价格不能小于最低价格
@@ -71,6 +71,20 @@ public abstract class AbstractRuleTemplate implements RuleTemplate {
     abstract protected Long calculateNewPrice(Long orderTotalAmount, Long shopTotalAmount, Long quota);
 
     /**
+     * 判断是否符合优惠券使用标准
+     *
+     * @param shopTotalAmount
+     * @param couponInfo
+     * @return
+     */
+    protected boolean isAvailable(Long shopTotalAmount, CouponInfo couponInfo) {
+        // 最低消费限制
+        Long threshold = couponInfo.getTemplate().getRule().getDiscount().getThreshold();
+        // 是否满足最低消费限制
+        return shopTotalAmount == null || shopTotalAmount < threshold;
+    }
+
+    /**
      * 计算订单总价
      *
      * @param products
@@ -83,7 +97,7 @@ public abstract class AbstractRuleTemplate implements RuleTemplate {
     }
 
     /**
-     * 根据门店维度计算每个门店下商品价格
+     * 根据门店维度计算每个门店下商品总价
      * key = shopId
      * value = 门店商品总价
      *

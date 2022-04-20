@@ -1,4 +1,4 @@
-package com.daichen.coupon.template.service.intf;
+package com.daichen.coupon.template.service;
 
 import com.daichen.coupon.template.api.beans.CouponTemplateInfo;
 import com.daichen.coupon.template.api.beans.PagedCouponTemplateInfo;
@@ -62,5 +62,5 @@ public interface CouponTemplateService {
      * @param request
      * @return
      */
-    PagedCouponTemplateInfo search(TemplateSearchParams request);
+    PagedCouponTemplateInfo searchTemplateInfo(TemplateSearchParams request);
 }

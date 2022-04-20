@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -51,6 +52,7 @@ public interface CouponTemplateDao extends JpaRepository<CouponTemplate, Long> {
      * @return
      */
     @Modifying
+    @Transactional(rollbackFor = Exception.class)
     @Query("update CouponTemplate c set c.available = 0 where c.id = :id")
     int updateCouponUnavailable(@Param("id") Long id);
 }

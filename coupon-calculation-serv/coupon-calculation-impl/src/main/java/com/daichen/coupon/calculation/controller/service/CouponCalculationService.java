@@ -1,4 +1,4 @@
-package com.daichen.coupon.calculation.controller.service.intf;
+package com.daichen.coupon.calculation.controller.service;
 
 import com.daichen.coupon.calculation.api.beans.ShoppingCart;
 import com.daichen.coupon.calculation.api.beans.SimulationOrder;
@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface CouponCalculationService {
 
     /**
-     * 优惠券结算。这里通过 Factory 类决定使用哪个底层 Rule，底层规则对上层透明
+     * 订单优惠券结算。这里通过 Factory 类决定使用哪个底层 Rule，底层规则对上层透明
      *
      * @param cart
      * @return
      */
-    ShoppingCart calculateOrderPrice(@RequestBody ShoppingCart cart);
+    ShoppingCart calculateOrder(@RequestBody ShoppingCart cart);
 
     /**
-     * 优惠券列表挨个试算，看哪个最赚钱
+     * 订单优惠券试算。给客户提示每个可用券的优惠额度，帮助挑选
      *
      * @param order
      * @return

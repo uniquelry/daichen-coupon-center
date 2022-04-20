@@ -1,13 +1,13 @@
-package com.daichen.coupon.template.service;
+package com.daichen.coupon.template.service.impl;
 
 import com.daichen.coupon.template.api.beans.CouponTemplateInfo;
 import com.daichen.coupon.template.api.beans.PagedCouponTemplateInfo;
 import com.daichen.coupon.template.api.beans.TemplateSearchParams;
 import com.daichen.coupon.template.api.enums.CouponType;
+import com.daichen.coupon.template.converter.CouponTemplateConverter;
 import com.daichen.coupon.template.dao.CouponTemplateDao;
 import com.daichen.coupon.template.dao.entity.CouponTemplate;
-import com.daichen.coupon.template.converter.CouponTemplateConverter;
-import com.daichen.coupon.template.service.intf.CouponTemplateService;
+import com.daichen.coupon.template.service.CouponTemplateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,7 +104,7 @@ public class CouponTemplateServiceImpl implements CouponTemplateService {
     }
 
     @Override
-    public PagedCouponTemplateInfo search(TemplateSearchParams request) {
+    public PagedCouponTemplateInfo searchTemplateInfo(TemplateSearchParams request) {
         CouponTemplate example = CouponTemplate.builder()
                 .name(request.getName())
                 .type(CouponType.convert(request.getType()))

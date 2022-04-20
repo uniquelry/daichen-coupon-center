@@ -1,4 +1,4 @@
-package com.daichen.coupon.customer.service.intf;
+package com.daichen.coupon.customer.service;
 
 import com.daichen.coupon.calculation.api.beans.ShoppingCart;
 import com.daichen.coupon.calculation.api.beans.SimulationOrder;
@@ -40,7 +40,7 @@ public interface CouponCustomerService {
      * @param order
      * @return
      */
-    SimulationResponse simulateOrderPrice(SimulationOrder order);
+    SimulationResponse simulateOrder(SimulationOrder order);
 
     /**
      * 删除用户优惠券

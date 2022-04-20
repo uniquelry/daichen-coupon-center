@@ -4,7 +4,7 @@ import com.daichen.coupon.calculation.api.beans.ShoppingCart;
 import com.daichen.coupon.calculation.template.impl.AntiPauTemplate;
 import com.daichen.coupon.calculation.template.impl.DiscountTemplate;
 import com.daichen.coupon.calculation.template.impl.DummyTemplate;
-import com.daichen.coupon.calculation.template.impl.LonelyNightTemplate;
+import com.daichen.coupon.calculation.template.impl.LonelyNightMoneyOffTemplate;
 import com.daichen.coupon.calculation.template.impl.MoneyOffTemplate;
 import com.daichen.coupon.calculation.template.impl.RandomReductionTemplate;
 import com.daichen.coupon.template.api.beans.CouponTemplateInfo;
@@ -31,37 +31,38 @@ public class CouponTemplateFactory {
     @Autowired
     private RandomReductionTemplate randomReductionTemplate;
     @Autowired
-    private LonelyNightTemplate lonelyNightTemplate;
+    private LonelyNightMoneyOffTemplate lonelyNightMoneyOffTemplate;
     @Autowired
     private DummyTemplate dummyTemplate;
     @Autowired
     private AntiPauTemplate antiPauTemplate;
 
-    public RuleTemplate getTemplate(ShoppingCart order) {
+    public RuleTemplate getTemplate(ShoppingCart cart) {
         // 不使用优惠券
-        if (CollectionUtils.isEmpty(order.getCouponInfos())) {
-            // dummy模板直接返回原价，不进行优惠计算
+        if (CollectionUtils.isEmpty(cart.getCouponInfos())) {
+            // dummy 模板直接返回原价，不进行优惠计算
             return dummyTemplate;
         }
 
         // 获取优惠券的类别
         // 目前每个订单只支持单张优惠券
-        CouponTemplateInfo template = order.getCouponInfos().get(0).getTemplate();
+        CouponTemplateInfo template = cart.getCouponInfos().get(0).getTemplate();
         CouponType category = CouponType.convert(template.getType());
 
         switch (category) {
-            // 订单满减券
+            // 满减券
             case MONEY_OFF:
                 return moneyOffTemplate;
-            // 随机立减券
-            case RANDOM_DISCOUNT:
-                return randomReductionTemplate;
-            // 午夜下单优惠翻倍
-            case LONELY_NIGHT_MONEY_OFF:
-                return lonelyNightTemplate;
             // 打折券
             case DISCOUNT:
                 return discountTemplate;
+            // 随机立减券
+            case RANDOM_REDUCTION:
+                return randomReductionTemplate;
+            // 寂寞午夜翻倍券
+            case LONELY_NIGHT_MONEY_OFF:
+                return lonelyNightMoneyOffTemplate;
+            // PUA 加倍奉还券
             case ANTI_PUA:
                 return antiPauTemplate;
             // 未知类型的券模板

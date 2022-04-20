@@ -11,7 +11,7 @@ import com.daichen.coupon.calculation.api.beans.ShoppingCart;
 public interface RuleTemplate {
 
     /**
-     * 计算优惠券
+     * 计算购物车总价
      *
      * @param cart
      * @return

@@ -37,9 +37,9 @@ public class TemplateSearchParams {
     /**
      * 页码
      */
-    private int page;
+    private Integer page;
     /**
      * 页大小
      */
-    private int pageSize;
+    private Integer pageSize;
 }

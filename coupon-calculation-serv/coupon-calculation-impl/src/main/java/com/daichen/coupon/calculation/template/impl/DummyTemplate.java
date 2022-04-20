@@ -6,6 +6,8 @@ import com.daichen.coupon.calculation.template.RuleTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
+
 /**
  * @author daichen
  * @version v1.0
@@ -20,6 +22,8 @@ public class DummyTemplate extends AbstractRuleTemplate implements RuleTemplate 
     public ShoppingCart calculate(ShoppingCart cart) {
         // 获取订单总价
         cart.setCost(getTotalPrice(cart.getProducts()));
+        cart.setCouponIds(Collections.emptyList());
+        cart.setCouponInfos(Collections.emptyList());
         return cart;
     }
 

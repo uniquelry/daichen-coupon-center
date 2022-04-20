@@ -3,7 +3,7 @@ package com.daichen.coupon.template.controller;
 import com.daichen.coupon.template.api.beans.CouponTemplateInfo;
 import com.daichen.coupon.template.api.beans.PagedCouponTemplateInfo;
 import com.daichen.coupon.template.api.beans.TemplateSearchParams;
-import com.daichen.coupon.template.service.intf.CouponTemplateService;
+import com.daichen.coupon.template.service.CouponTemplateService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,7 +26,7 @@ import java.util.Map;
  */
 @Slf4j
 @RestController
-@RequestMapping("/template")
+@RequestMapping("/couponTemplate")
 public class CouponTemplateController {
 
     @Autowired
@@ -51,7 +51,7 @@ public class CouponTemplateController {
      * @return
      */
     @PostMapping("/cloneTemplate")
-    public CouponTemplateInfo cloneTemplate(@RequestParam("id") Long templateId) {
+    public CouponTemplateInfo cloneTemplate(@RequestParam("templateId") Long templateId) {
         log.info("cloneTemplate: templateId={}", templateId);
         return couponTemplateService.cloneTemplate(templateId);
     }
@@ -97,9 +97,9 @@ public class CouponTemplateController {
      * @param request
      * @return
      */
-    @GetMapping("/searchTemplate")
+    @PostMapping("/searchTemplate")
     public PagedCouponTemplateInfo searchTemplate(@Valid @RequestBody TemplateSearchParams request) {
         log.info("searchTemplate, request={}", request);
-        return couponTemplateService.search(request);
+        return couponTemplateService.searchTemplateInfo(request);
     }
 }

@@ -17,8 +17,8 @@ public class MoneyOffTemplate extends AbstractRuleTemplate implements RuleTempla
 
     @Override
     protected Long calculateNewPrice(Long orderTotalAmount, Long shopTotalAmount, Long quota) {
-        // benefitAmount是扣减的价格
-        // 如果当前门店的商品总价<quota，那么最多只能扣减shopAmount的钱数
+        // benefitAmount 是扣减的价格
+        // 如果当前门店的商品总价 <quota，那么最多只能扣减 shopTotalAmount 的金额
         Long benefitAmount = shopTotalAmount < quota ? shopTotalAmount : quota;
         return orderTotalAmount - benefitAmount;
     }

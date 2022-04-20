@@ -24,25 +24,25 @@ import java.util.List;
 public class ShoppingCart {
 
     /**
+     * 用户 Id
+     */
+    @NotNull
+    private Long userId;
+    /**
      * 商品列表
      */
     @NotEmpty
     private List<Product> products;
     /**
-     * 券 Id
-     */
-    private Long couponId;
-    /**
      * 总金额
      */
     private Long cost;
     /**
-     * 目前只支持单张优惠券。但是为了以后的扩展考虑，可以添加多个优惠券的计算逻辑
+     * 购物车下单选择的券 Ids（目前只支持单张优惠券）
+     */
+    private List<Long> couponIds;
+    /**
+     * 购物车下单选择的券信息（目前只支持单张优惠券）。但是为了以后的扩展考虑，可以添加多个优惠券的计算逻辑
      */
     private List<CouponInfo> couponInfos;
-    /**
-     * 用户 Id
-     */
-    @NotNull
-    private Long userId;
 }

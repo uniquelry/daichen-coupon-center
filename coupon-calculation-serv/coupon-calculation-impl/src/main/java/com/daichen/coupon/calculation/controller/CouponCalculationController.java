@@ -3,7 +3,7 @@ package com.daichen.coupon.calculation.controller;
 import com.daichen.coupon.calculation.api.beans.ShoppingCart;
 import com.daichen.coupon.calculation.api.beans.SimulationOrder;
 import com.daichen.coupon.calculation.api.beans.SimulationResponse;
-import com.daichen.coupon.calculation.controller.service.intf.CouponCalculationService;
+import com.daichen.coupon.calculation.controller.service.CouponCalculationService;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,27 +21,27 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Slf4j
 @RestController
-@RequestMapping("calculator")
+@RequestMapping("/couponCalculator")
 public class CouponCalculationController {
 
     @Autowired
-    private CouponCalculationService calculationService;
+    private CouponCalculationService couponCalculationService;
 
     /**
-     * 优惠券结算
+     * 订单优惠券结算
      *
      * @param cart
      * @return
      */
-    @PostMapping("/calculateOrderPrice")
+    @PostMapping("/calculateOrder")
     @ResponseBody
-    public ShoppingCart calculateOrderPrice(@RequestBody ShoppingCart cart) {
-        log.info("do calculateOrderPrice cart: {}", new Gson().toJson(cart));
-        return calculationService.calculateOrderPrice(cart);
+    public ShoppingCart calculateOrder(@RequestBody ShoppingCart cart) {
+        log.info("do calculateOrder cart: {}", new Gson().toJson(cart));
+        return couponCalculationService.calculateOrder(cart);
     }
 
     /**
-     * 优惠券列表挨个试算。给客户提示每个可用券的优惠额度，帮助挑选
+     * 订单优惠券试算。给客户提示每个可用券的优惠额度，帮助挑选
      *
      * @param order
      * @return
@@ -50,6 +50,6 @@ public class CouponCalculationController {
     @ResponseBody
     public SimulationResponse simulateOrder(@RequestBody SimulationOrder order) {
         log.info("do simulateOrder order: {}", new Gson().toJson(order));
-        return calculationService.simulateOrder(order);
+        return couponCalculationService.simulateOrder(order);
     }
 }

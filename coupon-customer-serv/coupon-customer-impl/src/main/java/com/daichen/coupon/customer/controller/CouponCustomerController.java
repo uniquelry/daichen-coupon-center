@@ -6,7 +6,7 @@ import com.daichen.coupon.calculation.api.beans.SimulationResponse;
 import com.daichen.coupon.customer.api.beans.RequestCoupon;
 import com.daichen.coupon.customer.api.beans.SearchCoupon;
 import com.daichen.coupon.customer.dao.entity.Coupon;
-import com.daichen.coupon.customer.service.intf.CouponCustomerService;
+import com.daichen.coupon.customer.service.CouponCustomerService;
 import com.daichen.coupon.template.api.beans.CouponInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +28,11 @@ import java.util.List;
  */
 @Slf4j
 @RestController
-@RequestMapping("coupon-customer")
+@RequestMapping("/couponCustomer")
 public class CouponCustomerController {
 
     @Autowired
-    private CouponCustomerService customerService;
+    private CouponCustomerService couponCustomerService;
 
     /**
      * 领取优惠券
@@ -42,7 +42,7 @@ public class CouponCustomerController {
      */
     @PostMapping("requestCoupon")
     public Coupon requestCoupon(@Valid @RequestBody RequestCoupon request) {
-        return customerService.requestCoupon(request);
+        return couponCustomerService.requestCoupon(request);
     }
 
     /**
@@ -52,19 +52,19 @@ public class CouponCustomerController {
      * @return
      */
     @PostMapping("placeOrder")
-    public ShoppingCart checkout(@Valid @RequestBody ShoppingCart info) {
-        return customerService.placeOrder(info);
+    public ShoppingCart placeOrder(@Valid @RequestBody ShoppingCart info) {
+        return couponCustomerService.placeOrder(info);
     }
 
     /**
-     * 优惠券金额试算
+     * 订单优惠券试算
      *
      * @param order
      * @return
      */
-    @PostMapping("simulateOrderPrice")
-    public SimulationResponse simulate(@Valid @RequestBody SimulationOrder order) {
-        return customerService.simulateOrderPrice(order);
+    @PostMapping("simulateOrder")
+    public SimulationResponse simulateOrder(@Valid @RequestBody SimulationOrder order) {
+        return couponCustomerService.simulateOrder(order);
     }
 
     /**
@@ -74,9 +74,8 @@ public class CouponCustomerController {
      * @param couponId
      */
     @DeleteMapping("deleteCoupon")
-    public void deleteCoupon(@RequestParam("userId") Long userId,
-                             @RequestParam("couponId") Long couponId) {
-        customerService.deleteCoupon(userId, couponId);
+    public void deleteCoupon(@RequestParam("userId") Long userId, @RequestParam("couponId") Long couponId) {
+        couponCustomerService.deleteCoupon(userId, couponId);
     }
 
     /**
@@ -85,8 +84,8 @@ public class CouponCustomerController {
      * @param request
      * @return
      */
-    @PostMapping("findCoupon")
-    public List<CouponInfo> findCoupon(@Valid @RequestBody SearchCoupon request) {
-        return customerService.findCoupon(request);
+    @PostMapping("searchCoupon")
+    public List<CouponInfo> searchCoupon(@Valid @RequestBody SearchCoupon request) {
+        return couponCustomerService.findCoupon(request);
     }
 }

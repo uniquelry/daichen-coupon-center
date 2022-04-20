@@ -21,7 +21,6 @@ public class RandomReductionTemplate extends AbstractRuleTemplate implements Rul
     protected Long calculateNewPrice(Long orderTotalAmount, Long shopTotalAmount, Long quota) {
         // 计算使用优惠券之后的价格
         long maxBenefit = Math.min(shopTotalAmount, quota);
-
         int reductionAmount = new Random().nextInt(Long.valueOf(maxBenefit).intValue());
         Long newCost = orderTotalAmount - reductionAmount;
 

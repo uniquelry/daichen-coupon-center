@@ -26,9 +26,9 @@ public class PagedCouponTemplateInfo {
     /**
      * 页码
      */
-    public int page;
+    public Integer page;
     /**
      * 总数
      */
-    public long total;
+    public Long total;
 }

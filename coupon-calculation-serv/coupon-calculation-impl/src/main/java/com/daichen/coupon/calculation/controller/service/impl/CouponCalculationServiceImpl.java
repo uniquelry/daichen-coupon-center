@@ -1,11 +1,10 @@
-package com.daichen.coupon.calculation.controller.service;
+package com.daichen.coupon.calculation.controller.service.impl;
 
 import com.daichen.coupon.calculation.api.beans.ShoppingCart;
 import com.daichen.coupon.calculation.api.beans.SimulationOrder;
 import com.daichen.coupon.calculation.api.beans.SimulationResponse;
-import com.daichen.coupon.calculation.controller.service.intf.CouponCalculationService;
+import com.daichen.coupon.calculation.controller.service.CouponCalculationService;
 import com.daichen.coupon.calculation.template.CouponTemplateFactory;
-import com.daichen.coupon.calculation.template.RuleTemplate;
 import com.daichen.coupon.template.api.beans.CouponInfo;
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
@@ -27,10 +26,9 @@ public class CouponCalculationServiceImpl implements CouponCalculationService {
     private CouponTemplateFactory couponProcessorFactory;
 
     @Override
-    public ShoppingCart calculateOrderPrice(ShoppingCart cart) {
-        log.info("calculate order price: {}", new Gson().toJson(cart));
-        RuleTemplate ruleTemplate = couponProcessorFactory.getTemplate(cart);
-        return ruleTemplate.calculate(cart);
+    public ShoppingCart calculateOrder(ShoppingCart cart) {
+        log.info("calculate order cart: {}", new Gson().toJson(cart));
+        return couponProcessorFactory.getTemplate(cart).calculate(cart);
     }
 
     @Override

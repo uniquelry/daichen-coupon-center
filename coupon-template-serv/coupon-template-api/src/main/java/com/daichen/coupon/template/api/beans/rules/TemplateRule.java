@@ -15,7 +15,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TemplateRule {
 
-    /** 可以享受的折扣 */
+    /**
+     * 可以享受的折扣
+     */
     private Discount discount;
     /**
      * 每个人最多可以领券数量
