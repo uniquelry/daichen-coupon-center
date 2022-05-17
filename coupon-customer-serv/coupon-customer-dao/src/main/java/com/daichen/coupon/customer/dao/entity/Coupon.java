@@ -44,8 +44,8 @@ public class Coupon {
      * 创建时间，通过 @CreateDate 注解自动填值（需要配合 @JpaAuditing 注解在启动类上生效）
      */
     @CreatedDate
-    @Column(name = "created_time", nullable = false)
-    private Date createdTime;
+    @Column(name = "create_time", nullable = false)
+    private Date createTime;
     /**
      * 对应的模板 Id - 不使用 one to one 映射
      * 不推荐使用级联查询的原因是为了防止滥用而导致的 DB 性能问题

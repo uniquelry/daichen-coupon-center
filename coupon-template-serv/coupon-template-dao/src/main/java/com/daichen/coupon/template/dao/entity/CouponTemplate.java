@@ -44,8 +44,8 @@ public class CouponTemplate {
      * 创建时间，通过 @CreateDate 注解自动填值（需要配合 @JpaAuditing 注解在启动类上生效）
      */
     @CreatedDate
-    @Column(name = "created_time", nullable = false)
-    private Date createdTime;
+    @Column(name = "create_time", nullable = false)
+    private Date createTime;
     /**
      * 优惠券名称
      */
