@@ -4,7 +4,7 @@ import com.daichen.coupon.template.api.beans.CouponTemplateInfo;
 import com.daichen.coupon.template.api.beans.PagedCouponTemplateInfo;
 import com.daichen.coupon.template.api.beans.TemplateSearchParams;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,7 +54,7 @@ public interface CouponTemplateService {
      * @param ids
      * @return
      */
-    Map<Long, CouponTemplateInfo> getTemplateInfoMap(Collection<Long> ids);
+    Map<Long, CouponTemplateInfo> getTemplateInfoMap(List<Long> ids);
 
     /**
      * 查询优惠券模板（分页）

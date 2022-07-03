@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -86,7 +86,7 @@ public class CouponTemplateController {
      * @return
      */
     @GetMapping("/getTemplateBatch")
-    public Map<Long, CouponTemplateInfo> getTemplateBatch(@RequestParam("ids") Collection<Long> ids) {
+    public Map<Long, CouponTemplateInfo> getTemplateBatch(@RequestParam("ids") List<Long> ids) {
         log.info("getTemplateBatch: ids={}", ids);
         return couponTemplateService.getTemplateInfoMap(ids);
     }

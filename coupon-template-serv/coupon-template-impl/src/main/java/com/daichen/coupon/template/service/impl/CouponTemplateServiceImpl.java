@@ -17,7 +17,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -95,7 +94,7 @@ public class CouponTemplateServiceImpl implements CouponTemplateService {
     }
 
     @Override
-    public Map<Long, CouponTemplateInfo> getTemplateInfoMap(Collection<Long> ids) {
+    public Map<Long, CouponTemplateInfo> getTemplateInfoMap(List<Long> ids) {
         List<CouponTemplate> templates = couponTemplateDao.findAllById(ids);
 
         return templates.stream()

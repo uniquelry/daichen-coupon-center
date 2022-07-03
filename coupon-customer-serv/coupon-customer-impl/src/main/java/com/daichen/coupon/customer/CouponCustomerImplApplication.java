@@ -20,8 +20,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaAuditing
 @ComponentScan(basePackages = {"com.daichen.coupon"})
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = {"com.daichen.coupon.customer.dao", "com.daichen.coupon.template.dao"})
-@EntityScan(basePackages = {"com.daichen.coupon.customer.dao.entity", "com.daichen.coupon.template.dao.entity"})
+@EnableJpaRepositories(basePackages = {"com.daichen.coupon.customer.dao"})
+@EntityScan(basePackages = {"com.daichen.coupon.customer.dao.entity"})
 public class CouponCustomerImplApplication {
 
     public static void main(String[] args) {
